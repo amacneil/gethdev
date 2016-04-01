@@ -1,8 +1,10 @@
 {
   "name": "gethdev",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A development wrapper for Ethereum's geth command",
-  "main": "index.js",
+  "bin": {
+    "gethdev": "bin/gethdev"
+  },
   "scripts": {
     "lint": "eslint . bin/gethdev",
     "test": "echo \"Error: no test specified\" && exit 1"
