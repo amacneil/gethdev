@@ -7,15 +7,15 @@ var stringArgv = require('string-argv');
 
 var cmd = 'geth';
 var args = ['--dev'];
-var procArgs = process.argv.slice(2);
-var envArgs = stringArgv(process.env.GETHDEV_OPTS);
 
 // environment args are always appended
-args = args.concat(envArgs);
+if (process.env.GETHDEV_OPTS) {
+  args = args.concat(stringArgv(process.env.GETHDEV_OPTS));
+}
 
 // user-specified arguments
-if (procArgs.length > 0) {
-  args = args.concat(procArgs);
+if (process.argv.length > 2) {
+  args = args.concat(process.argv.slice(2));
 } else {
   // default arguments
   args.push('js', 'gethdev.js');
