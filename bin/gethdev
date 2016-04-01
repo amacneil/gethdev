@@ -7,15 +7,21 @@ var path = require('path');
 var cmd = 'geth';
 var args = ['--dev'];
 var procArgs = process.argv.slice(2);
-var gethdevJsPath = path.join(path.dirname(__dirname), 'gethdev.js');
 
 if (procArgs.length > 0) {
   // user-specified arguments
   args = args.concat(procArgs);
 } else {
   // default arguments
-  args.push('js', gethdevJsPath);
+  args.push('js', 'gethdev.js');
 }
+
+// auto-expand gethdev.js path
+args.forEach(function each(value, i) {
+  if (value === 'gethdev.js') {
+    args[i] = path.join(path.dirname(__dirname), 'gethdev.js');
+  }
+});
 
 console.log('>', cmd, args.join(' '));
 childProcess.spawnSync('geth', args, { stdio: 'inherit' });
