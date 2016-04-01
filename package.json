@@ -1,6 +1,6 @@
 {
   "name": "gethdev",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A development wrapper for Ethereum's geth command",
   "bin": {
     "gethdev": "bin/gethdev"
