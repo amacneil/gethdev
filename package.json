@@ -1,0 +1,20 @@
+{
+  "name": "gethdev",
+  "version": "0.0.1",
+  "description": "A development wrapper for Ethereum's geth command",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . bin/gethdev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Macneil <adrian@adrianmacneil.com>",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/npm/npm.git"
+  },
+  "devDependencies": {
+    "eslint": "2.5.3",
+    "eslint-config-airbnb": "6.2.0"
+  }
+}

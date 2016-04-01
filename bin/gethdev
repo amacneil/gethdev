@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+'use strict';
+
+var childProcess = require('child_process');
+var path = require('path');
+
+var cmd = 'geth';
+var args = ['--dev'];
+var procArgs = process.argv.slice(2);
+var mineJsPath = path.join(path.dirname(__dirname), 'mine.js');
+
+if (procArgs.length > 0) {
+  // user-specified arguments
+  args = args.concat(procArgs);
+} else {
+  // default arguments
+  args.push('js', mineJsPath);
+}
+
+console.log('>', cmd, args.join(' '));
+childProcess.spawnSync('geth', args, { stdio: 'inherit' });
