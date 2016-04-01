@@ -7,14 +7,14 @@ var path = require('path');
 var cmd = 'geth';
 var args = ['--dev'];
 var procArgs = process.argv.slice(2);
-var mineJsPath = path.join(path.dirname(__dirname), 'mine.js');
+var gethdevJsPath = path.join(path.dirname(__dirname), 'gethdev.js');
 
 if (procArgs.length > 0) {
   // user-specified arguments
   args = args.concat(procArgs);
 } else {
   // default arguments
-  args.push('js', mineJsPath);
+  args.push('js', gethdevJsPath);
 }
 
 console.log('>', cmd, args.join(' '));

@@ -1,5 +1,5 @@
 /* global web3 */
-(function mine() {
+(function gethdev() {
   var minHeight = 0;
 
   // minimum etherbase balance we should mine
@@ -61,7 +61,7 @@
 
   // create the first account (with blank password) if necessary
   if (!web3.eth.coinbase) {
-    log('Creating etherbase account')
+    log('Creating etherbase account');
     web3.personal.newAccount('');
   }
 
