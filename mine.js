@@ -1,6 +1,5 @@
 /* global web3 */
 (function mine() {
-  var eth = web3.eth;
   var minHeight = 0;
 
   // minimum etherbase balance we should mine
@@ -16,42 +15,57 @@
     console.log('[gethdev] ' + str);
   }
 
+  /**
+   * Start the miner if it is not already running
+   */
   function startMiner() {
-    if (!eth.mining) {
-      log('miner.start(' + THREADS + ')');
+    if (!web3.eth.mining) {
+      log('Starting miner');
       web3.miner.start(THREADS);
     }
   }
 
+  /**
+   * Stop the miner if it is running
+   */
   function stopMiner() {
-    if (eth.mining) {
-      log('miner.stop()');
+    if (web3.eth.mining) {
+      log('Stopping miner');
       web3.miner.stop();
     }
   }
 
+  /**
+   * Start or stop the miner if necessary
+   */
   function checkStatus() {
-    // if coinbase balance is too low, start mining
-    if (eth.getBalance(eth.coinbase).lessThan(MIN_BALANCE)) {
+    // if etherbase balance is too low, start mining
+    if (web3.eth.getBalance(web3.eth.coinbase).lessThan(MIN_BALANCE)) {
       startMiner();
       return;
     }
 
     // if there are any pending transactions, start mining
-    if (eth.getBlock('pending').transactions.length > 0) {
-      minHeight = eth.blockNumber + CONFIRMATIONS;
+    if (web3.eth.getBlock('pending').transactions.length > 0) {
+      minHeight = web3.eth.blockNumber + CONFIRMATIONS;
 
       startMiner();
       return;
     }
 
-    if (eth.blockNumber > minHeight) {
+    if (web3.eth.blockNumber > minHeight) {
       // nothing to do, pause mining for now
       stopMiner();
     }
   }
 
-  eth.filter('latest', checkStatus);
-  eth.filter('pending', checkStatus);
+  // create the first account (with blank password) if necessary
+  if (!web3.eth.coinbase) {
+    log('Creating etherbase account')
+    web3.personal.newAccount('');
+  }
+
+  web3.eth.filter('latest', checkStatus);
+  web3.eth.filter('pending', checkStatus);
   startMiner();
 }());
