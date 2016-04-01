@@ -1,19 +1,18 @@
 {
   "name": "gethdev",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A development wrapper for Ethereum's geth command",
   "bin": {
     "gethdev": "bin/gethdev"
   },
   "scripts": {
-    "lint": "eslint . bin/gethdev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . bin/gethdev"
   },
   "author": "Adrian Macneil <adrian@adrianmacneil.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/npm.git"
+    "url": "https://github.com/amacneil/gethdev.git"
   },
   "devDependencies": {
     "eslint": "2.5.3",
