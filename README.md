@@ -93,6 +93,19 @@ gethdev attach
 
 This will give you a JavaScript console, attached to the existing running `gethdev` instance.
 
+### I always need to specify heaps of arguments to geth
+
+I feel your pain! Now you can simply set a `GETHDEV_OPTS` environment variable, and they will be automatically included when you run `gethdev`.
+
+```sh
+# add GETHDEV_OPTS to your profile:
+echo export GETHDEV_OPTS="--port 12345" >> ~/.bash_profile
+# close and reopen your terminal window, then:
+gethdev
+```
+
+This will automatically run the command `geth --dev --port 12345 js gethdev.js`, and save your fingers from RSI.
+
 ### Why do I need to install this with npm?
 
 You don't! If you want, simply download [gethdev.js](https://github.com/amacneil/gethdev/blob/master/gethdev.js) to your computer, then run it manually by calling:
