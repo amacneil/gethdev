@@ -1,5 +1,9 @@
 # gethdev
 
+[![Build Status](https://img.shields.io/travis/amacneil/gethdev/master.svg)](https://travis-ci.org/amacneil/gethdev)
+[![Version](https://img.shields.io/npm/v/gethdev.svg)](https://www.npmjs.com/package/gethdev)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/amacneil/gethdev/blob/master/LICENSE.md)
+
 A development wrapper for Ethereum's geth command.
 
 ### What is this?
