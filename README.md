@@ -68,14 +68,18 @@ I0331 21:16:23.970381   77962 udp.go:212] Listening, enode://15b903fa2a48566fb73
 I0331 21:16:23.970593   77962 whisper.go:160] Whisper started
 I0331 21:16:23.970609   77962 backend.go:526] Server started
 I0331 21:16:23.970704   77962 server.go:552] Listening on [::]:60565
-I0331 21:16:23.971073   77962 ipc.go:112] IPC service started (/Users/adrian/Library/Ethereum/geth.ipc)
+I0331 21:16:23.971073   77962 node.go:296] IPC endpoint opened: /var/folders/4c/jqjt6x_n5w7g85vpf04qkxv40000gn/T/ethereum_dev_mode/geth.ipc
 ```
 
-From the output, we can see that `geth` has started the IPC service at `~/Library/Ethereum/geth.ipc` (OSX). This happens to be the default location that Ethereum Wallet (Mist) will try to connect, so now you can go ahead and start up the wallet and you should see it connected to your private testnet, with some ether all ready for you.
+From the output, we can see that `geth` has started the IPC service at `/var/folders/4c/jqjt6x_n5w7g85vpf04qkxv40000gn/T/ethereum_dev_mode/geth.ipc` (OSX). This is a temporary location that `geth --dev` uses to run your IPC service.  Unfortunately the Ethereum Wallet (Mist) won't be able to find your testnet here.  To rememdy this, run the gethdev command with an additional flag like so:
+
+```sh
+gethdev --ipcpath ~/Library/Ethereum/geth.ipc js gethdev.js 
+```
+
+Now you can go ahead and start up the wallet and you should see it connected to your private testnet, with some ether all ready for you.
 
 ![Mist Wallet](https://raw.githubusercontent.com/amacneil/gethdev/master/wallet.png)
-
-> NOTE: The blockchain data is stored in a temporary folder by default, such as `/var/folders/5y/wb6jwkcs0_91r2fnnxg8r69r0000gn/T/ethereum_dev_mode`. If you wish to specify a custom location for the data, use the `--datadir` command line option (see below). When you specify `--datadir`, it will also move the location of the `geth.ipc` file, so if you still intend to connect to it from Ethereum Wallet, you will need to also specify the IPC path using `--ipcpath ~/Library/Ethereum/geth.ipc` (or the equivalent path for your platform).
 
 ### Running custom commands
 
