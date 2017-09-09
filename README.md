@@ -6,6 +6,8 @@
 
 A development wrapper for Ethereum's geth command.
 
+**NOTE: This project is no longer being actively maintained. If you are interested in being a maintainer of it, please open a GitHub issue and let me know.**
+
 ### What is this?
 
 Do you want to run a private Ethereum testnet?
